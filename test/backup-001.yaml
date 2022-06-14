@@ -1,0 +1,52 @@
+schedules:
+  - cron: "54 19,7 * * *"
+    displayName: 'Scheduler for triggering the pipeline at 1.24 AM and 1.24 PM.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "18 22,10 * * *"
+    displayName: 'Scheduler for triggering the pipeline at 3.48 AM and 3.48 PM.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "42 0,12 * * *"
+    displayName: 'Scheduler for triggering the pipeline at 6.12 AM and 6.12 PM.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "06 3,15 * * *"
+    displayName: 'Scheduler for triggering the pipeline at 8.36 AM and 8.36 PM.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "0 6 * * *"
+    displayName: 'Scheduler for triggering the pipeline at 11.00 AM'
+    branches:
+     include: [ master ]
+    always: true
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- template: ./variables.yaml
+
+#resources:
+#  repositories:
+#    - repository: templates
+#      type: github
+#      name: wso2-enterprise/azure-pipeline-templates
+#      ref: refs/heads/dev
+#      endpoint: Uvindu
+
+jobs:
+- template: ./file-share-backup.yaml
+  parameters:
+    AZURE_SERVICE_CONNECTION: ${{ variables.AZURE_SERVICE_CONNECTION }}
+    BACKUP_MANAGEMENT_TYPE: ${{ variables.BACKUP_MANAGEMENT_TYPE }}
+    VAULT_NAME: ${{ variables.VAULT_NAME }}
+    RESOURCE_GROUP: ${{ variables.RESOURCE_GROUP }}
+    CONTAINER_NAME: ${{ variables.CONTAINER_NAME }}
+    ITEM_NAME: ${{ variables.ITEM_NAME }}

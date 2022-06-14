@@ -1,0 +1,8 @@
+steps:
+  - script: |
+      set -e
+      if ! which az &> /dev/null; then
+        # Install Azure CLI
+        curl -Ls -o azure-cli_bionic_all.deb https://aka.ms/InstallAzureCliBionicEdge && sudo dpkg -i azure-cli_bionic_all.deb
+      fi
+    displayName: 'Install Azure CLI'

@@ -1,0 +1,142 @@
+schedules:
+  - cron: "*/30 */2 * * *"
+    displayName: 'Scheduler for triggering the pipeline every 3 hours.'
+    branches:
+     include: [ master ]
+    always: true
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- template: ./file-share-backup.yaml
+  parameters:
+    AZURE_SERVICE_CONNECTION: uvindu-rnd-service
+    BACKUP_MANAGEMENT_TYPE: AzureStorage
+    VAULT_NAME: uvindu-test-vault
+    RESOURCE_GROUP: rnd-uvindu
+    CONTAINER_NAME: rndstoragev1
+    ITEM_NAME: testshare
+# - job: file_share_backup_failed_alerts
+  #   displayName: File Share Backup Failed Alert
+  #   dependsOn:
+  #     - file_share_backup
+  #   condition: |
+  #     or
+  #     (
+  #     eq(dependencies.file_share_backup, 'Failed'),
+  #     )
+  #   steps:
+  #     - template: '${{ variables.PIPELINE_TEMPLATE_DIR }}/alerts/send-alert-cd.yaml'
+  #       parameters:
+  #         PIPELINE_NAME: 'file_share_backup'
+  #         ENVIRONMENT: "dev"
+  #         HELM_CHART_REPO_URL: "https://github.com/wso2-enterprise/asgardeo-deployment-helm-onprem-user-store"
+  #         PIPELINE_STATUS: "Failed"
+  #         PRODUCT_REPO_URL: "https://github.com/wso2-enterprise/asgardeo-user-store-agent"
+  #         BUILD_VERSION: $(SERVER_VERSION)
+  #         IMAGE_SHA: $(IMAGE_SHA)
+  #         HELM_VERSION: $(HELM_CHART_TAG)
+  #         GOOGLE_CHAT_SPACE: $(GOOGLE_CHAT_SPACE)
+  #         GOOGLE_CHAT_KEY: $(GOOGLE_CHAT_KEY)
+  #         GOOGLE_CHAT_TOKEN: $(GOOGLE_CHAT_TOKEN)
+
+
+az backup item list --resource-group rg-asgardeo-main-dev-eastus2-001 --vault-name rsv-asgardeo-dev-eastus2-001 | jq .[0].properties.lastBackupStatus
+
+
+schedules:
+  - cron: "0 0,5,10,15,20 * * *"
+    displayName: 'Scheduler for triggering the pipeline every two and half hours.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "20 2,7,12,17,22 * * *"
+    displayName: 'Scheduler for triggering the pipeline every two and half hours.'
+    branches:
+     include: [ master ]
+    always: true
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- template: ./variables.yaml
+
+#resources:
+#  repositories:
+#    - repository: templates
+#      type: github
+#      name: wso2-enterprise/azure-pipeline-templates
+#      ref: refs/heads/dev
+#      endpoint: Uvindu
+
+jobs:
+- template: ./file-share-backup.yaml
+  parameters:
+    AZURE_SERVICE_CONNECTION: ${{ variables.AZURE_SERVICE_CONNECTION }}
+    BACKUP_MANAGEMENT_TYPE: ${{ variables.BACKUP_MANAGEMENT_TYPE }}
+    VAULT_NAME: ${{ variables.VAULT_NAME }}
+    RESOURCE_GROUP: ${{ variables.RESOURCE_GROUP }}
+    CONTAINER_NAME: ${{ variables.CONTAINER_NAME }}
+    ITEM_NAME: ${{ variables.ITEM_NAME }}
+
+
+1  --> 1.24 am
+2  --> 3.48 am
+3  --> 6.12 am
+4  --> 8.36 am
+5  --> 11.00 am
+
+6  --> 1.24 pm
+7  --> 3.48 pm
+8  --> 6.12 pm
+9  --> 8.36 pm
+10 --> 11.30 pm
+
+
+schedules:
+  - cron: "54 19,0,5,10,15 * * *"
+    displayName: 'Scheduler for triggering the pipeline every two and half hours.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "18 22,2,7,12,17 * * *"
+    displayName: 'Scheduler for triggering the pipeline every two and half hours.'
+    branches:
+     include: [ master ]
+    always: true
+
+
+schedules:
+  - cron: "54 19,7 * * *"
+    displayName: 'Scheduler for triggering the pipeline a'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "18 22,10 * * *"
+    displayName: 'Scheduler for triggering the pipeline every 2.24 hour intervels.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "42 0,12 * * *"
+    displayName: 'Scheduler for triggering the pipeline every 2.24 hour intervels.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "06 3,15 * * *"
+    displayName: 'Scheduler for triggering the pipeline every 2.24 hour intervels.'
+    branches:
+     include: [ master ]
+    always: true
+  - cron: "30 5 * * *"
+    displayName: 'Scheduler for triggering the pipeline every 2.24 hour intervels.'
+    branches:
+     include: [ master ]
+    always: true

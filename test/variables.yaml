@@ -1,0 +1,14 @@
+#PIPELINE_TEMPLATE_DIR: ''
+#AZURE_SERVICE_CONNECTION: file-share-storage-account
+#BACKUP_MANAGEMENT_TYPE: AzureStorage
+#VAULT_NAME: rsv-asgardeo-dev-eastus2-001
+#RESOURCE_GROUP: rg-asgardeo-main-dev-eastus2-001
+#CONTAINER_NAME: stasgrisdeeus201
+#ITEM_NAME: is-share
+variables:
+  AZURE_SERVICE_CONNECTION: 'uvindu-rnd-service'
+  BACKUP_MANAGEMENT_TYPE: 'AzureStorage'
+  VAULT_NAME: 'uvindu-test-vault'
+  RESOURCE_GROUP: 'rnd-uvindu'
+  CONTAINER_NAME: 'rndstoragev1'
+  ITEM_NAME: 'testshare'
