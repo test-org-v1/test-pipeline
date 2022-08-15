@@ -1,2 +1,2 @@
 variables:
-  var1: 'template 2'
+  VAR: 'template 2'
