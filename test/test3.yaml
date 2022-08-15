@@ -11,3 +11,4 @@
 
 variables:
   VAR: 'stagedr'
+  poolname: 'pool2'
