@@ -11,4 +11,4 @@
 
 variables:
   VAR: 'stagedr'
-  poolname: 'pool2'
+  poolname: 'Ubuntu 18.04'

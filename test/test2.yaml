@@ -11,4 +11,4 @@
 
 variables:
   VAR: 'stage'
-  poolname: 'pool1'
+  poolname: 'Ubuntu 18.04'
