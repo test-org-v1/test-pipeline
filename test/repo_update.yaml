@@ -1,0 +1,12 @@
+parameters:
+- name: 'KUBERNETES_SERVICE_CONNECTION'
+  type: string
+
+steps:
+- task: HelmDeploy@0
+  displayName: Helm Repo Update
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceConnection: ${{parameters.KUBERNETES_SERVICE_CONNECTION}}
+    command: 'repo'
+    arguments: 'update'

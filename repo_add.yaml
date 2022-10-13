@@ -1,0 +1,16 @@
+parameters:
+- name: 'KUBERNETES_SERVICE_CONNECTION'
+  type: string
+- name: 'CHART_NAME'
+  type: string
+- name: 'CHART_URL'
+  type: string
+
+steps:
+- task: HelmDeploy@0
+  displayName: Helm Repo Add
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceConnection: ${{parameters.KUBERNETES_SERVICE_CONNECTION}}
+    command: 'repo'
+    arguments: 'add ${{parameters.CHART_NAME}} ${{parameters.CHART_URL}}'
